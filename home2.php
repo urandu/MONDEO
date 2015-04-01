@@ -1,29 +1,37 @@
-<?php     
-Include('connect.php');
-Include('send_text.php');
-
-If(isset($_POST['submit'])!='')
-{
-If($_POST['surname']=='' || $_POST['othernames']=='' || $_POST['mobileno']=='')
-{
-echo "please fill the empty field.";
-}
-Else
-{
-$sql="insert into ford(surname,othernames,mobileno) values('".$_POST['surname']."', '".$_POST['othernames']."', '".$_POST['mobileno']."')";
-$res=mysql_query($sql);
-If($res)
-{
-echo "Record successfully inserted";
-send_sms($_POST['mobileno'],'Hallo, '.$_POST['surname'].' you have been successfully registered to the eagles plartform.');
-}
-Else
-{
-echo "There is a problem entering details.Please fill again.";
-}
 
 
-}
-}
+<?php
+include('includes/connect.php');
+include('includes/send_text.php');
 
+	$firstname=$_POST['surname'];
+  $othernames=$_POST['other_names'];
+  $mobileno=$_POST['phone'];
+ 
+
+if(isset($_POST['submit']))
+  
+
+{
+  //if($firstname=='' || $othernames=='' || $mobileno=='')
+  if(!isset($firstname) ||!isset($othernames) || !isset($mobileno))
+  {
+    echo "please fill the empty field.";
+
+  }
+  else
+  {
+    $sql="INSERT into patients(surname,other_names,phone)values('$firstname','$othernames','$mobileno')"; 
+    $qury=mysql_query($sql);
+    if(!$qury)
+    { 
+	     echo mysql_error();
+    }
+    else
+    {
+	     echo "Details successfully inserted";
+	     send_sms($mobileno,'Hallo, '.$firstname.' you have been successfully registered to the eagles plartform.');
+    }
+  }
+}
 ?>
