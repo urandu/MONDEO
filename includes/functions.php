@@ -22,3 +22,18 @@ function get_surname($patient_id, $con)
         return $surname['surname'];
     }
 }
+
+function get_drug_name($drug_id, $con)
+{
+
+    $sql="GET drug_name FROM drugs WHERE drug_id=".$drug_id;
+    $result=mysql_query($sql,$con);
+    if(!$result)
+    {
+        echo('error in getting drug name: '.mysql_errno());
+    }else
+    {
+        $drug_name=mysql_fetch_assoc($result);
+        return $drug_name['drug_name'];
+    }
+}

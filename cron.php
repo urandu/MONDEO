@@ -20,6 +20,7 @@ while(true) {
         //implement sending logic here i.e construct text message to send and increment next time
 
         $patient_name=get_surname($row['patient_id'],$con);
+        $drug_name=get_drug_name($row['drug_id'],$con);
 
 
     }
