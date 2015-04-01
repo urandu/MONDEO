@@ -19,6 +19,7 @@ while(true) {
     while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
         //implement sending logic here i.e construct text message to send and increment next time
 
+        $patient_name=get_surname($row['patient_id'],$con);
 
 
     }
